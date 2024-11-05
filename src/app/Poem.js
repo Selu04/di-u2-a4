@@ -10,9 +10,12 @@ const poem = {
     return (
       <article>
         {poem.lines.map((line, index) =>
-          <p key={index}>
-            {line}
-          </p>
+          <div key={index}>
+            {index != 0 && <hr></hr>}
+            <p>
+              {line}
+            </p>
+          </div>
         )}
       </article>
     );

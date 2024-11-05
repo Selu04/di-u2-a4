@@ -1,8 +1,8 @@
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
-export default function List() {
-  const listItems = people.map(person =>
+function Component({ person }) {
+  return (
     <li key={person.id}>
       <img
         src={getImageUrl(person)}
@@ -15,8 +15,18 @@ export default function List() {
       </p>
     </li>
   );
+}
+export default function List() {
+  const chemists = people.filter(person => person.profession === "químico").map(person =>
+    <Component person={person} key={person.id}/>
+  );
+  const listItems = people.map(person =>
+    <Component person={person} key={person.id}/>
+  );
   return (
     <article>
+      <h1>Químicos</h1>
+      <ul>{chemists}</ul>
       <h1>Científicos</h1>
       <ul>{listItems}</ul>
     </article>
